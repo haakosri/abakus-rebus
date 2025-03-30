@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TestItem = ({ question, result }) => {
+const TestItem = ({ question, result, correctClassification }) => {
   const getStatusIcon = () => {
     if (!result) return "?";
     return result.correct ? "✓" : "✗";
@@ -30,6 +30,11 @@ const TestItem = ({ question, result }) => {
             {getClassification()}
           </span>
         </div>
+      </td>
+      <td className="py-3 px-4 w-48 text-center">
+        <span className="text-sm font-medium text-gray-800">
+          {correctClassification}
+        </span>
       </td>
     </tr>
   );

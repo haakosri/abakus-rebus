@@ -15,23 +15,22 @@ const SubmitPage = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   
-  const testQuestions = [
-    'Hvordan registrerer jeg en tilbakebetaling?',
-    'Hvor mye alkohol kan jeg føre på privat utlegg?',
-    'Hvordan avskrives driftsmidler etter balanseføring?',
-    'Pause under arbeidstid',
-    'Kan jeg som administrator endre timelistene til de ansatte?',
-    'Hvordan legger jeg til noter i årsregnskapet?',
-    'Når må jeg sende inn MVA-melding?',
-    'returmelding Altinn',
-    'Skal en kapitalforhøyelse regnskapsføres før den er registrert?',
-    'Hvilken momskode skal jeg bruke ved salg til utlandet?',
-    'nedskrive tilhenger',
-    'Er gaver til samarbeidspartnere regnskapsmessig og skattemessig fradragsberettiget?',
-    'Hvordan opprette MVA-melding?',
-    'Feil på innsending av årsrgnskap',
-    'Hvordan endrer jeg e-post på en ansatt?',
-    'mva',
+  const testItems = [
+    { question: 'Hvordan registrerer jeg en tilbakebetaling?', correctClassification: 'SupportAI' },
+    { question: 'Hvor mye alkohol kan jeg føre på privat utlegg?', correctClassification: 'Sticos' },
+    { question: 'Hvordan avskrives driftsmidler etter balanseføring?', correctClassification: 'Sticos' },
+    { question: 'Pause under arbeidstid', correctClassification: 'Sticos' },
+    { question: 'Kan jeg som administrator endre timelistene til de ansatte?', correctClassification: 'SupportAI' },
+    { question: 'Hvordan legger jeg til noter i årsregnskapet?', correctClassification: 'SupportAI' },
+    { question: 'Når må jeg sende inn MVA-melding?', correctClassification: 'Sticos' },
+    { question: 'returmelding Altinn', correctClassification: 'SupportAI' },
+    { question: 'Skal en kapitalforhøyelse regnskapsføres før den er registrert?', correctClassification: 'Sticos' },
+    { question: 'Hvilken momskode skal jeg bruke ved salg til utlandet?', correctClassification: 'Sticos' },
+    { question: 'nedskrive tilhenger', correctClassification: 'Sticos' },
+    { question: 'Er gaver til samarbeidspartnere regnskapsmessig og skattemessig fradragsberettiget?', correctClassification: 'Sticos' },
+    { question: 'Feil på innsending av årsrgnskap', correctClassification: 'SupportAI' },
+    { question: 'Hvordan endrer jeg e-post på en ansatt?', correctClassification: 'SupportAI' },
+    { question: 'mva', correctClassification: 'Sticos' },
   ];
 
   const knowledgeBase = [
@@ -167,7 +166,7 @@ const SubmitPage = () => {
               <div className="mb-4">
                 <span className="font-semibold">Your Score: </span>
                 <span className={`font-medium text-lg ${feedback && feedback.score > 3 ? 'text-green-600' : 'text-amber-600'}`}>
-                  {feedback ? `${feedback.score}/10` : 'N/A'}
+                  {feedback ? `${feedback.score}/15` : 'N/A'}
                 </span>
               </div>
               <div className="mb-4">
@@ -186,16 +185,20 @@ const SubmitPage = () => {
                       <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider w-32">
                         Status
                       </th>
+                      <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider w-48">
+                        Correct Classification
+                      </th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {testQuestions.map((question, index) => {
+                    {testItems.map((item, index) => {
                       const result = feedback && feedback.results && feedback.results[index];
                       return (
                         <TestItem
                           key={index}
-                          question={question}
+                          question={item.question}
                           result={result}
+                          correctClassification={item.correctClassification}
                         />
                       );
                     })}
