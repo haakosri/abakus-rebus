@@ -23,7 +23,7 @@ export const submitSolution = async (name, password, solution) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ name, password, solution }),
+    body: JSON.stringify({ name, solution }), // password, 
   });
 
   if (!response.ok) {

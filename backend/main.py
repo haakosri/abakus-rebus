@@ -47,24 +47,25 @@ async def startup_event():
 async def login(user: User):
     """Login endpoint"""
     # Check authentication
-    name = authenticate_user(user.name, user.password)
+    # name = authenticate_user(user.name, user.password)
 
     # If authentication fails, return 401
-    if name is None:
+    """ if name is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect password",
             headers={"WWW-Authenticate": "Bearer"},
-        )
+        ) """
 
-    return {"name": name}
+    return {"name": user.name}
 
 
 @app.post("/submit", response_model=SubmissionResponse)
 async def submit_response(user: User):
     """Submit a solution and get evaluation results"""
     # Authenticate the user
-    name = authenticate_user(user.name, user.password)
+    # name = authenticate_user(user.name, user.password)
+    name = user.name
 
     # If authentication fails, return 401
     if name is None:

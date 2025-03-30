@@ -6,7 +6,7 @@ class User(BaseModel):
     """User model for authentication and submission"""
 
     name: str
-    password: str
+    # password: str
     solution: Optional[str] = None
 
 

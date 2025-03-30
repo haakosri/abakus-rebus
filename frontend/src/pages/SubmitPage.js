@@ -118,15 +118,15 @@ const SubmitPage = () => {
 
   return (
     <div className="min-h-screen p-4">
-      <Header title="Submit Your Solution" />
+      <Header title="AI Classification Challenge" />
 
       <div className="max-w-6xl mx-auto">
         {/* Top flex container for form and knowledge base */}
         <div className="bg-white rounded-lg shadow-md mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Submit Solution Section */}
           <div className="p-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Classification challenge</h2>
-
+            {/* <h2 className="text-2xl font-bold text-gray-800 mb-4">Classification challenge</h2>
+ */}
             {error && (
               <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
                 Error: {error}
@@ -151,15 +151,19 @@ const SubmitPage = () => {
 
               <button
                 type="submit"
-                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-4 rounded-full focus:outline-none focus:shadow-outline flex items-center justify-center"
-                disabled={isSubmitting}
+                className={`w-full font-bold py-3 px-4 rounded-full focus:outline-none focus:shadow-outline flex items-center justify-center ${
+                  isSubmitting || (feedback && feedback.num_uses >= 5)
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : 'bg-indigo-600 hover:bg-indigo-700 text-white'
+                }`}
+                disabled={isSubmitting || (feedback && feedback.num_uses >= 5)}
               >
                 {isSubmitting ? (
                   <>
                     <LoadingSpinner size="md" color="white" />
                     <span className="ml-2">Processing...</span>
                   </>
-                ) : 'Submit'}
+                ) : (feedback && feedback.num_uses >= 5) ? 'Maximum attempts reached' : 'Submit'}
               </button>
             </form>
           </div>

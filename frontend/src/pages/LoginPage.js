@@ -84,7 +84,7 @@ const LoginPage = () => {
               />
             </div>
             
-            <div className="mb-6">
+            {/* <div className="mb-6">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
                 Password
               </label>
@@ -98,7 +98,7 @@ const LoginPage = () => {
                 required
               />
               <p className="text-gray-500 text-xs mt-1">Hint: Password is preset for you</p>
-            </div>
+            </div> */}
             
             <div className="flex items-center justify-center">
               <button
