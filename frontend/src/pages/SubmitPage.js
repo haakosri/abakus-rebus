@@ -209,11 +209,11 @@ const SubmitPage = () => {
                     <th className="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Question
                     </th>
-                    <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider w-32">
-                      Status
-                    </th>
                     <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider w-48">
                       Correct Classification
+                    </th>
+                    <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider w-32">
+                      Status
                     </th>
                   </tr>
                 </thead>

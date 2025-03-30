@@ -21,6 +21,11 @@ const TestItem = ({ question, result, correctClassification }) => {
       <td className="py-3 px-4 text-sm">
         {question}
       </td>
+      <td className="py-3 px-4 w-48 text-center">
+        <span className="text-sm font-medium text-gray-800">
+          {correctClassification}
+        </span>
+      </td>
       <td className="py-3 px-4 w-32 text-center">
         <div className="flex items-center justify-center">
           <span className={`inline-flex items-center justify-center w-8 h-8 rounded-full ${getColorClass()} font-bold mr-2`}>
@@ -30,11 +35,6 @@ const TestItem = ({ question, result, correctClassification }) => {
             {getClassification()}
           </span>
         </div>
-      </td>
-      <td className="py-3 px-4 w-48 text-center">
-        <span className="text-sm font-medium text-gray-800">
-          {correctClassification}
-        </span>
       </td>
     </tr>
   );
