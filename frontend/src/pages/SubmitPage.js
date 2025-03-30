@@ -125,7 +125,7 @@ const SubmitPage = () => {
         <div className="bg-white rounded-lg shadow-md mb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
           {/* Submit Solution Section */}
           <div className="p-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Submit Your Solution</h2>
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">Classification challenge</h2>
 
             {error && (
               <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
@@ -136,13 +136,13 @@ const SubmitPage = () => {
             <form onSubmit={handleSubmit}>
               <div className="mb-6">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="solution">
-                  Your solution:
+                  Your prompt:
                 </label>
                 <textarea
                   className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="solution"
                   rows="4"
-                  placeholder="Enter your solution here..."
+                  placeholder="Enter your prompt here..."
                   value={solution}
                   onChange={(e) => setSolution(e.target.value)}
                   required
@@ -159,7 +159,7 @@ const SubmitPage = () => {
                     <LoadingSpinner size="md" color="white" />
                     <span className="ml-2">Processing...</span>
                   </>
-                ) : 'Submit Solution'}
+                ) : 'Submit'}
               </button>
             </form>
           </div>
