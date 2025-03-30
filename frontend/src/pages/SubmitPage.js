@@ -135,6 +135,12 @@ const SubmitPage = () => {
 
             <form onSubmit={handleSubmit}>
               <div className="mb-6">
+                <h3 className="font-bold text-lg mb-2">Challenge Goal</h3>
+                <p className="text-gray-700 mb-4">The goal of this competition is to create the best prompt that can correctly classify customer questions into the right category:</p>
+                <ul className="list-disc pl-5 mb-4">
+                  <li className="text-gray-700">Sticos</li>
+                  <li className="text-gray-700">SupportAI</li>
+                </ul>
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="solution">
                   Your prompt:
                 </label>
