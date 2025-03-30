@@ -212,35 +212,39 @@ const SubmitPage = () => {
                 {feedback ? `${feedback.num_uses}/5` : 'N/A'}
               </span>
             </div>
-            <div className="mb-6 overflow-hidden rounded-lg border border-gray-200">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="py-3 px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Question
-                    </th>
-                    <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider w-48">
-                      Correct Classification
-                    </th>
-                    <th className="py-3 px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider w-32">
-                      Status
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
-                  {testItems.map((item, index) => {
-                    const result = feedback && feedback.results && feedback.results[index];
-                    return (
-                      <TestItem
-                        key={index}
-                        question={item.question}
-                        result={result}
-                        correctClassification={item.correctClassification}
-                      />
-                    );
-                  })}
-                </tbody>
-              </table>
+            <div className="mb-6 overflow-x-auto sm:rounded-lg">
+              <div className="inline-block min-w-full align-middle">
+                <div className="overflow-hidden border border-gray-200 rounded-lg">
+                  <table className="min-w-full divide-y divide-gray-200">
+                    <thead className="bg-gray-50">
+                      <tr>
+                        <th scope="col" className="py-3 px-2 sm:px-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                          Question
+                        </th>
+                        <th scope="col" className="py-3 px-2 sm:px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider w-24 sm:w-48">
+                          Correct Classification
+                        </th>
+                        <th scope="col" className="py-3 px-2 sm:px-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider w-20 sm:w-32">
+                          Status
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="bg-white divide-y divide-gray-200">
+                      {testItems.map((item, index) => {
+                        const result = feedback && feedback.results && feedback.results[index];
+                        return (
+                          <TestItem
+                            key={index}
+                            question={item.question}
+                            result={result}
+                            correctClassification={item.correctClassification}
+                          />
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
         </div>
