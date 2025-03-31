@@ -85,8 +85,9 @@ async def submit_response(user: User):
     )
     row = cursor.fetchone()
     tries = row[0] if row else 0
+    print(f"Tries: {tries}")
 
-    if tries >= 10:
+    if tries >= 5:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Maximum number of tries exceeded",
