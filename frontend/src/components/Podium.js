@@ -12,11 +12,11 @@ const Podium = ({ top3 }) => {
   }
 
   return (
-    <div className="flex justify-center items-end h-64 space-x-10">
+    <div className="flex justify-center items-end h-72 space-x-10">
       {/* Second Place */}
       {top3.length >= 2 && (
         <div className="flex flex-col items-center">
-          <div className="text-lg font-medium mb-2">{top3[1].name}</div>
+          <div className="text-lg font-medium mb-4">{top3[1].name}</div>
           <div 
             className="podium-second w-28 flex items-center justify-center rounded-t-md text-white"
             style={{ height: calculatePodiumHeight(top3[1].score, 2) }}
@@ -32,7 +32,7 @@ const Podium = ({ top3 }) => {
       {/* First Place */}
       {top3.length >= 1 && (
         <div className="flex flex-col items-center">
-          <div className="text-xl font-bold mb-2">{top3[0].name}</div>
+          <div className="text-xl font-bold mb-4">{top3[0].name}</div>
           <div 
             className="podium-first w-32 flex items-center justify-center rounded-t-md text-white"
             style={{ height: calculatePodiumHeight(top3[0].score, 1) }}
@@ -48,7 +48,7 @@ const Podium = ({ top3 }) => {
       {/* Third Place */}
       {top3.length >= 3 && (
         <div className="flex flex-col items-center">
-          <div className="text-lg font-medium mb-2">{top3[2].name}</div>
+          <div className="text-lg font-medium mb-4">{top3[2].name}</div>
           <div 
             className="podium-third w-24 flex items-center justify-center rounded-t-md text-white"
             style={{ height: calculatePodiumHeight(top3[2].score, 3) }}
