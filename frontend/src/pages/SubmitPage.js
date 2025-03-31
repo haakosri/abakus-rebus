@@ -35,39 +35,15 @@ const SubmitPage = () => {
 
   const knowledgeBase = [
     {
-      title: "Tripletex",
-      url: "tripletex.no",
-      description: "Her er link til Tripletex.",
-      image: ""
-    },
-    {
       title: "Sticos",
       url: "https://www.tripletex.no/om-systemet/sticos-faghjelp/",
-      description: "Her finner dere informasjon om Sticos og deres produkter. Zipp er navnet på produktet vi bruker.",
+      description: "",
       image: ""
     },
     {
-      title: "Zipp",
-      url: "https://www.sticos.no/produkter/sticos-oppslag/zipp/",
-      description: "Her finner dere informasjon om Zipp.",
-      image: ""
-    },
-    {
-      title: "OpenAI Structured Outputs",
-      url: "https://platform.openai.com/docs/guides/structured-outputs",
-      description: "Vi bruker OpenAI for å evaluere løsningene. Spesifikt structured outputs. output er da tvungen til å være [Sticos/SupportAI/Other].",
-      image: ""
-    },
-    {
-      title: "Standard Chat in Tripletex",
-      url: "",
-      description: "Standard chat in Tripletex",
-      image: chatImage // Use the imported image
-    },
-    {
-      title: "Slik fungerer AI assistenten",
+      title: "AI assistenten (SupportAI)",
       url: "https://hjelp.tripletex.no/hc/no/articles/30288790756625-Slik-fungerer-AI-assistenten",
-      description: "Slik fungerer AI assistenten",
+      description: "",
       image: ""
     }
   ];
@@ -136,11 +112,14 @@ const SubmitPage = () => {
             <form onSubmit={handleSubmit}>
               <div className="mb-6">
                 <h3 className="font-bold text-lg mb-2">Challenge Goal</h3>
-                <p className="text-gray-700 mb-4">The goal of this competition is to create the best prompt that can correctly classify customer questions into the right category:</p>
+                <p className="text-gray-700 mb-4">The goal is to create the best prompt that can correctly classify customer questions into the right category:</p>
                 <ul className="list-disc pl-5 mb-4">
                   <li className="text-gray-700">Sticos</li>
                   <li className="text-gray-700">SupportAI</li>
                 </ul>
+                <p className="text-gray-700 mb-4">
+                  You have five attempts to create the best prompt.
+                </p>
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="solution">
                   Your prompt:
                 </label>
@@ -176,23 +155,16 @@ const SubmitPage = () => {
 
           {/* Knowledge Base Section */}
           <div className="p-6">
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Knowledge Base</h2>
-            <ul className="list-disc pl-5 space-y-4">
+            <h2 className="text-2xl font-bold text-gray-800 mb-4">Useful links</h2>
+            <div className="space-y-4">
               {knowledgeBase.map((item, index) => (
-                <li key={index} className="flex items-start space-x-4">
-                  <div>
-                    <details>
-                      <summary className="text-blue-600 hover:underline cursor-pointer">{item.title}</summary>
-                      {item.image && (
-                        <img src={item.image} alt="Knowledge Base" className="w-full max-w-xs object-cover rounded mt-2" />
-                      )}
-                      <a href={item.url} className="text-blue-600 hover:underline">{item.url}</a>
-                      <p className="text-gray-600">{item.description}</p>
-                    </details>
-                  </div>
-                </li>
+                <div key={index} className="text-gray-700">
+                  <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
+                  <p className="mb-2">{item.description}</p>
+                  <a href={item.url} className="text-blue-600 hover:underline">{item.url}</a>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
 
