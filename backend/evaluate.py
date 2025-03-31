@@ -2,6 +2,7 @@ import csv
 import os
 import json
 import asyncio
+import logging
 from typing import Dict, List, Tuple, Any, Optional
 from models import OpenAIResponse
 import os
@@ -115,6 +116,8 @@ async def parse_openai_response(
             classification = value["classification"]
             question = value["question"]
             correct = classification == questions[question].strip()
+            if not correct:
+                logging.error(f"Incorrect classification: '{classification}' vs expected '{questions[question].strip()}' for question: {question}")
             results[key] = {
                 "question": question,
                 "classification": classification,

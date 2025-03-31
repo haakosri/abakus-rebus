@@ -31,6 +31,15 @@ const SubmitPage = () => {
     { question: 'Feil på innsending av årsrgnskap', correctClassification: 'SupportAI' },
     { question: 'Hvordan endrer jeg e-post på en ansatt?', correctClassification: 'SupportAI' },
     { question: 'mva', correctClassification: 'Sticos' },
+    { question: 'Kan noe merkes som sluttfaktura?', correctClassification: 'SupportAI' },
+    { question: 'ansette på nytt', correctClassification: 'SupportAI' },
+    { question: 'hvordan får jeg tatt ut næringsspesifikasjon', correctClassification: 'Sticos' },
+    { question: 'How can I make a profit for the last three months?', correctClassification: 'Sticos' },
+    { question: 'Hvordan registrere refusjon for el-bil ladning på lønning', correctClassification: 'SupportAI' },
+    { question: 'Hvordan presenteres tilleggsutbytte i årsregnskapet?', correctClassification: 'SupportAI' },
+    { question: 'hvordan fungerer anleggsregisteret?', correctClassification: 'Sticos' },
+    { question: 'Jeg har udekket tap fra tidligere år, hvordan fører jeg overskudd for i år mot dette?', correctClassification: 'SupportAI' },
+    { question: 'Hva betyr sikkerhet mht. KID og valg av modulus 10 og modulus 11', correctClassification: 'Sticos' },
   ];
 
   const knowledgeBase = [
