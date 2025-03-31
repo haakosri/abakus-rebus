@@ -1,37 +1,44 @@
 import csv
 import os
 import json
+import asyncio
 from typing import Dict, Any, List, Tuple
 
 from evaluate import evaluate, load_questions
 
 
-def test_evaluate(freetext: str, questions) -> Dict[str, Any]:
+async def test_evaluate(freetext: str, questions) -> Dict[str, Any]:
     """
     Test the evaluate function against expected results from CSV.
 
     Args:
         freetext: The free text to evaluate
+        questions: The questions to evaluate against
 
     Returns:
         A dictionary with evaluation results and test results
     """
     # Get evaluation results from OpenAI (or fallback)
-    eval_results = evaluate(freetext, questions)
+    eval_results = await evaluate(freetext, questions)
 
     score = sum(result["correct"] for result in eval_results.values())
     test_results = [question["question"] for question in eval_results.values()]
 
-    save_evaluation_log(freetext, eval_results, score)
+    # Calculate a percentage score out of 100
+    total_questions = len(eval_results)
+    tmp_score = (score / total_questions * 100) if total_questions > 0 else 0
+    
+    await save_evaluation_log(freetext, eval_results, score)
 
     return {
         "score": score,
+        "tmp_score": tmp_score,
         "results": eval_results,
         "test_details": test_results,
     }
 
 
-def save_evaluation_log(
+async def save_evaluation_log(
     freetext: str,
     results: Dict[str, Any],
     score: int,
@@ -76,7 +83,8 @@ if __name__ == "__main__":
     """
     questions = load_questions("data/check_questions.csv")
 
-    results = test_evaluate(sample_text, questions)
+    # Run the async function in an event loop
+    results = asyncio.run(test_evaluate(sample_text, questions))
 
     print(f"Score (1-5): {results['score']}")
     print(f"Temp Score (0-100): {results['tmp_score']}")
