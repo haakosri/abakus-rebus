@@ -1,15 +1,13 @@
 // src/pages/ResultsPage.js
 import React, { useState, useEffect } from 'react';
-import { getLeaderboard, getTop3 } from '../services/api';
-import { getMockLeaderboard, getMockTop3 } from '../utils/helpers';
+import { getLeaderboard } from '../services/api';
+import { getMockLeaderboard } from '../utils/helpers';
 import LoadingSpinner from '../components/loadingSpinner';
-import Podium from '../components/Podium';
 import LeaderboardTable from '../components/leaderboardTable';
 import QRCode from '../components/qrCode';
 
 const ResultsPage = () => {
   const [leaderboard, setLeaderboard] = useState([]);
-  const [top3, setTop3] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -18,20 +16,12 @@ const ResultsPage = () => {
       try {
         setLoading(true);
         
-        // Fetch leaderboard data
         const leaderboardData = await getLeaderboard();
-        
-        // Fetch top 3 data
-        const top3Data = await getTop3();
-        
         setLeaderboard(leaderboardData);
-        setTop3(top3Data);
         setError(null);
       } catch (err) {
         setError(err.message);
-        // Use mock data if API fails
         setLeaderboard(getMockLeaderboard());
-        setTop3(getMockTop3());
       } finally {
         setLoading(false);
       }
@@ -69,10 +59,13 @@ const ResultsPage = () => {
         {/* Mock QR Code */}
         <QRCode />
         
-        {/* Podium section */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-2xl font-semibold mb-8 text-center">Winners Podium</h2>
-          <Podium top3={top3} />
+        <div className="mt-6 flex justify-center mb-8">
+          <a
+            href="/final"
+            className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full"
+          >
+            Final results
+          </a>
         </div>
         
         {/* Leaderboard section */}

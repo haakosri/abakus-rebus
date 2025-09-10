@@ -11,8 +11,8 @@ services:
       - REACT_APP_API_PASSWORD=${REACT_APP_API_PASSWORD}
     volumes:
       - ./backend:/app
-      - leaderboard_data:/app/leaderboard.db
-      - sqlite_data:/app/data
+      - leaderboard_data:/app/data/leaderboard.db
+      - ./backend/data:/app/data
 
   frontend:
     build:
@@ -27,4 +27,3 @@ services:
 
 volumes:
   leaderboard_data:
-  sqlite_data:

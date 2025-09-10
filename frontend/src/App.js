@@ -5,6 +5,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import LoginPage from './pages/LoginPage';
 import SubmitPage from './pages/SubmitPage';
 import ResultsPage from './pages/ResultsPage';
+import FinalResultsPage from './pages/FinalResultsPage';
 
 // Protected route component
 const ProtectedRoute = ({ children }) => {
@@ -36,6 +37,7 @@ const AppRoutes = () => {
         } 
       />
       <Route path="/results" element={<ResultsPage />} />
+      <Route path="/final" element={<FinalResultsPage />} />
     </Routes>
   );
 };

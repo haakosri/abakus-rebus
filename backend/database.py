@@ -126,11 +126,12 @@ def get_leaderboard(limit: int = 10) -> List[Dict[str, Any]]:
 
     cursor.execute(
         """
-        SELECT name, score, timestamp 
-        FROM scores 
-        ORDER BY score DESC 
+        SELECT name, MAX(score) AS max_score, MAX(timestamp) AS latest_timestamp
+        FROM scores
+        GROUP BY name
+        ORDER BY max_score DESC
         LIMIT ?
-    """,
+        """,
         (limit,),
     )
 
@@ -164,3 +165,37 @@ def get_top_three() -> List[Dict[str, Any]]:
     conn.close()
 
     return [{"name": row[0], "score": row[1], "timestamp": row[2]} for row in rows]
+
+
+def get_latest_unscored_submissions() -> List[Dict[str, Any]]:
+    """
+    Return the latest submission per user that has not been assigned a finalScore yet (finalScore == 0).
+
+    Returns:
+        List of dicts with keys: name, solution, timestamp
+    """
+    conn = sqlite3.connect("leaderboard.db")
+    cursor = conn.cursor()
+
+    cursor.execute(
+        """
+        SELECT s.name, s.solution, s.timestamp
+        FROM scores s
+        INNER JOIN (
+            SELECT name, MAX(timestamp) AS latest_ts
+            FROM scores
+            WHERE finalScore = 0
+            GROUP BY name
+        ) latest ON latest.name = s.name AND latest.latest_ts = s.timestamp
+        WHERE s.finalScore = 0
+        ORDER BY s.timestamp DESC
+        """
+    )
+
+    rows = cursor.fetchall()
+    conn.close()
+
+    return [
+        {"name": row[0], "solution": row[1], "timestamp": row[2]}
+        for row in rows
+    ]

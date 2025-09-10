@@ -76,7 +76,7 @@ Under hvilke betingelser kan en fusjon være skattefri? ; Sticos
 manuell opplastning i automatisk bankavstemming ; SupportAI
 hvordan legge til eksisterende tripletex kunde ; SupportAI
 Er ei dunjakke benyttet på vinterstid for snekker eller varmepumpemontør å anse som verneklær med tilhørende fradragsrett i næringa? ; Sticos
-er det nye frister for utsettelse av skattemeldingen for 2023 ; Sticos
+er det nye frister for utsettelse av skattemeldingen for 2023; Sticos
 fakturageby inngående faktura ; Sticos
 integrasjon med bank ; SupportAI
 Utbetaling spleis aksjer ; Sticos
@@ -88,15 +88,15 @@ klarnafiler ; SupportAI
 mva ; Sticos
 Er det skatt på utbytte? ; Sticos
 avvist av banken ; SupportAI
-Det er ikke snakk om så mye og lånet tilbakebetales innen 10 dager. Igjen, det er et holdingselskap som kun eies av meg. ; Sticos
-jeg vi lavslutte pakken årsoppgjrø sammen med abbonnement BASIS. jeg tenker at de går sammen når jeg avslutter BAsis, men vil være helt sikker. Basis er avsluttet i dag med 3 mnds varsel ; SupportAI
+Det er ikke snakk om så mye og lånet tilbakebetales innen 10 dager. Igjen, det er et holdingselskap som kun eies av meg.; Sticos
+jeg vi lavslutte pakken årsoppgjrø sammen med abbonnement BASIS. jeg tenker at de går sammen når jeg avslutter BAsis, men vil være helt sikker. Basis er avsluttet i dag med 3 mnds varsel; SupportAI
 er det mulig å legge in en ansatt kun til en gang betaling? ; SupportAI
 vi har utenlandsk ansatt og han har ikke fått hans første skattekort ennå. Hva kan vi gjøre? Kan vi vente med utbetaling av lønn? ; Sticos
 Feil på innsending av årsrgnskap ; SupportAI
-Hva betyr sikkerhet mht. KID og valg av modulus 10 og modulus 11 ; Sticos
+Hva betyr sikkerhet mht. KID og valg av modulus 10 og modulus 11; Sticos
 hvordan føre sykepenger ; Sticos
 nedskrive tilhenger ; Sticos
-ny bil som koster 375 000 kr og det står ink moms får jeg tilbake på momsen da ? ; Sticos
+ny bil som koster 375 000 kr og det står ink moms får jeg tilbake på momsen da ?; Sticos
 sponsing ; Sticos
 korleis vurdere vare i arbeid? ; Sticos
 Kan noe merkes som sluttfaktura? ; SupportAI
@@ -107,4 +107,44 @@ Hvordan registrere refusjon for el-bil ladning på lønning ; SupportAI
 Hvordan presenteres tilleggsutbytte i årsregnskapet? ; SupportAI
 hvordan fungerer anleggsregisteret? ; Sticos
 Jeg har udekket tap fra tidligere år, hvordan fører jeg overskudd for i år mot dette? ; SupportAI
-Hva betyr sikkerhet mht. KID og valg av modulus 10 og modulus 11 ; Sticos
+Hva betyr sikkerhet mht. KID og valg av modulus 10 og modulus 11; Sticos
+Hva er gjennomsnittlig antall timer per ansatt i juli?;mcp agent
+Gi meg en tabell med timeforbruk per avdeling hittil i år.;mcp agent
+Hva er budsjettert omsetning for 2025, og hvor mye er realisert hittil?;mcp agent
+Hva er timeforbruket på prosjekt X denne måneden?;mcp agent
+Hvilke tre prosjekter har høyest inntekt hittil i år?;mcp agent
+Hvem har registrert timer på prosjekt Z denne uken?;mcp agent
+Hvilken trend ser vi i timer registrert på prosjekt X de siste seks månedene?;mcp agent
+Hva er gjennomsnittlig månedlige kostnader i 2025?;mcp agent
+Lag et kakediagram som viser fordeling av kostnader på avdelinger.;mcp agent
+Hva er saldoen på konto 1920 (bank) per 31. august 2025?;mcp agent
+Lag en tabell som viser inntekter og kostnader side om side per måned i 2025.;mcp agent
+Hvor mange nye prosjekter ble opprettet i juli?;mcp agent
+Hvilke avdelinger har bidratt mest til inntektene i 2025?;mcp agent
+Hva er våre samlede driftskostnader i 2025 så langt?;mcp agent
+Lag en tabell med topp 10 kostnadskontoer hittil i år.;mcp agent
+Hva er kostnaden for reiseutgifter i Q2 2025?;mcp agent
+Hvordan har omsetningen utviklet seg de siste tre årene?;mcp agent
+Hvordan har mva-beløpet utviklet seg per kvartal?;mcp agent
+Hvor mye har vi brukt på lønn i januar?;mcp agent
+Gi meg et stolpediagram over antall registrerte timer per uke i august.;mcp agent
+Gi meg en tabell over lønnskostnader per ansatt i juli.;mcp agent
+Lag et kakediagram over lønnskostnader fordelt på ansatte i juli.;mcp agent
+Gi meg et linjediagram over lønnskostnader de siste 12 månedene.;mcp agent
+Hvilke ansatte har registrert flest timer denne måneden?;mcp agent
+Lag et søylediagram som sammenligner budsjettert og faktisk resultat per kvartal.;mcp agent
+Hva er resultatet (overskudd/underskudd) for Q1 i 2025?;mcp agent
+Lag et linjediagram som viser inntektsutviklingen måned for måned i 2025.;mcp agent
+Hvor mange prosjekter er aktive per dags dato?;mcp agent
+Hvor mye er bokført i husleie hittil i år?;mcp agent
+Gi meg et stolpediagram over inntekter fordelt på prosjekter i år.;mcp agent
+Hvor mange ansatte er registrert i systemet nå?;mcp agent
+Hva er kostnadene tilknyttet prosjekt Y?;mcp agent
+Hvilke kontoer har høyest kostnader i juni?;mcp agent
+Lag en tabell som viser inntekter per måned hittil i år.;mcp agent
+Sett opp en tabell med budsjettert vs faktisk resultat per kvartal i 2025.;mcp agent
+Lag en tabell som viser timeforbruk per prosjekt siste tre måneder.;mcp agent
+Hva er selskapets totale omsetning hittil i år?;mcp agent
+Lag et linjediagram som viser både inntekter og kostnader måned for måned.;mcp agent
+Hvor mange timer er registrert totalt i august?;mcp agent
+Hvilke måneder hadde høyest kostnader i 2024?;mcp agent

@@ -52,3 +52,11 @@ export const getTop3 = async () => {
   
   return await response.json();
 };
+
+export const getFinalLeaderboard = async () => {
+  const response = await fetch(`${API_URL}/final`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch final leaderboard');
+  }
+  return await response.json();
+};

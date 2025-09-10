@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import Header from '../components/Header';
@@ -16,31 +16,28 @@ const SubmitPage = () => {
   const navigate = useNavigate();
   
   const testItems = [
-    { question: 'Hvordan registrerer jeg en tilbakebetaling?', correctClassification: 'SupportAI' },
-    { question: 'Hvor mye alkohol kan jeg føre på privat utlegg?', correctClassification: 'Sticos' },
-    { question: 'Hvordan avskrives driftsmidler etter balanseføring?', correctClassification: 'Sticos' },
+    { question: 'Hvordan registrere refusjon for el-bil ladning på lønning', correctClassification: 'SupportAI' },
+    { question: 'Hvilken momskode skal jeg bruke ved salg til utlandet?', correctClassification: 'Sticos' },
+    { question: 'Hvilke kostnadsposter avviker mest fra budsjett i 2024?', correctClassification: 'Innsiktsmodulen' },
     { question: 'Pause under arbeidstid', correctClassification: 'Sticos' },
     { question: 'Kan jeg som administrator endre timelistene til de ansatte?', correctClassification: 'SupportAI' },
-    { question: 'Hvordan legger jeg til noter i årsregnskapet?', correctClassification: 'SupportAI' },
-    { question: 'Når må jeg sende inn MVA-melding?', correctClassification: 'Sticos' },
-    { question: 'returmelding Altinn', correctClassification: 'SupportAI' },
-    { question: 'Skal en kapitalforhøyelse regnskapsføres før den er registrert?', correctClassification: 'Sticos' },
-    { question: 'Hvilken momskode skal jeg bruke ved salg til utlandet?', correctClassification: 'Sticos' },
-    { question: 'nedskrive tilhenger', correctClassification: 'Sticos' },
-    { question: 'Er gaver til samarbeidspartnere regnskapsmessig og skattemessig fradragsberettiget?', correctClassification: 'Sticos' },
-    { question: 'Feil på innsending av årsrgnskap', correctClassification: 'SupportAI' },
-    { question: 'Hvordan endrer jeg e-post på en ansatt?', correctClassification: 'SupportAI' },
-    { question: 'mva', correctClassification: 'Sticos' },
-    { question: 'Kan noe merkes som sluttfaktura?', correctClassification: 'SupportAI' },
-    { question: 'ansette på nytt', correctClassification: 'SupportAI' },
+    { question: 'Hvordan påvirker finansposter årets resultat?', correctClassification: 'Innsiktsmodulen' },
     { question: 'hvordan får jeg tatt ut næringsspesifikasjon', correctClassification: 'Sticos' },
-    { question: 'How can I make a profit for the last three months?', correctClassification: 'Sticos' },
-    { question: 'Hvordan registrere refusjon for el-bil ladning på lønning', correctClassification: 'SupportAI' },
-    { question: 'Hvordan presenteres tilleggsutbytte i årsregnskapet?', correctClassification: 'SupportAI' },
-    { question: 'hvordan fungerer anleggsregisteret?', correctClassification: 'Sticos' },
+    { question: 'Hvordan legger jeg til noter i årsregnskapet?', correctClassification: 'SupportAI' },
+    { question: 'Hva er total varekostnad, og hvordan avviker den fra budsjett?', correctClassification: 'Innsiktsmodulen' },
+    { question: 'Er gaver til samarbeidspartnere regnskapsmessig og skattemessig fradragsberettiget?', correctClassification: 'Sticos' },
+    { question: 'Hvordan endrer jeg e-post på en ansatt?', correctClassification: 'SupportAI' },
+    { question: 'Hvor mye alkohol kan jeg føre på privat utlegg?', correctClassification: 'Sticos' },
     { question: 'Jeg har udekket tap fra tidligere år, hvordan fører jeg overskudd for i år mot dette?', correctClassification: 'SupportAI' },
-    { question: 'Hva betyr sikkerhet mht. KID og valg av modulus 10 og modulus 11', correctClassification: 'Sticos' },
+    { question: 'Hvordan avskrives driftsmidler etter balanseføring?', correctClassification: 'Sticos' },
+    { question: 'Hva er årets faktiske lønnskostnader sammenlignet med budsjett?', correctClassification: 'Innsiktsmodulen' },
+    { question: 'Når må jeg sende inn MVA-melding?', correctClassification: 'Sticos' },
+    { question: 'Hvordan registrerer jeg en tilbakebetaling?', correctClassification: 'SupportAI' },
+    { question: 'hvordan fungerer anleggsregisteret?', correctClassification: 'Sticos' },
+    { question: 'Kan noe merkes som sluttfaktura?', correctClassification: 'SupportAI' },
+    { question: 'Hvor mye har selskapet tjent i renteinntekter hittil i år?', correctClassification: 'Innsiktsmodulen' },
   ];
+  
 
   const knowledgeBase = [
     {
@@ -79,19 +76,16 @@ const SubmitPage = () => {
       setError("Please enter your solution");
       return;
     }
-
     setIsSubmitting(true);
     setError(null);
 
     try {
       const response = await submitSolution(auth.name, auth.password, solution);
-
       if (response.status === 401) {
         logout();
         navigate('/');
         return;
       }
-
       setFeedback(response);
     } catch (error) {
       console.error(error);
@@ -100,6 +94,16 @@ const SubmitPage = () => {
       setIsSubmitting(false);
     }
   };
+
+  const resultsByQuestion = useMemo(() => {
+    if (!feedback || !feedback.results) return {};
+    const map = {};
+    Object.values(feedback.results).forEach((r) => {
+      const key = (r.question || '').trim();
+      if (key) map[key] = r;
+    });
+    return map;
+  }, [feedback]);
 
   return (
     <div className="min-h-screen p-4">
@@ -125,6 +129,7 @@ const SubmitPage = () => {
                 <ul className="list-disc pl-5 mb-4">
                   <li className="text-gray-700">Sticos</li>
                   <li className="text-gray-700">SupportAI</li>
+                  <li className="text-gray-700">Innsiktsmodulen</li>
                 </ul>
                 <p className="text-gray-700 mb-4">
                   You have five attempts to create the best prompt.
@@ -184,7 +189,7 @@ const SubmitPage = () => {
             <div className="mb-4">
               <span className="font-semibold">Your Score: </span>
               <span className={`font-medium text-lg ${feedback && feedback.score > 3 ? 'text-green-600' : 'text-amber-600'}`}>
-                {feedback ? `${feedback.score}/15` : 'N/A'}
+                {feedback ? `${feedback.score}/${testItems.length}` : 'N/A'}
               </span>
             </div>
             <div className="mb-4">
@@ -212,7 +217,7 @@ const SubmitPage = () => {
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
                       {testItems.map((item, index) => {
-                        const result = feedback && feedback.results && feedback.results[index];
+                        const result = resultsByQuestion[item.question.trim()];
                         return (
                           <TestItem
                             key={index}

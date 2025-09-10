@@ -12,7 +12,7 @@ const Podium = ({ top3 }) => {
   }
 
   return (
-    <div className="flex justify-center items-end h-72 space-x-10">
+    <div className="relative flex justify-center items-end h-80 space-x-10 mt-8">
       {/* Second Place */}
       {top3.length >= 2 && (
         <div className="flex flex-col items-center">
@@ -29,18 +29,22 @@ const Podium = ({ top3 }) => {
         </div>
       )}
       
-      {/* First Place */}
+      {/* First Place - Larger and more celebratory */}
       {top3.length >= 1 && (
-        <div className="flex flex-col items-center">
-          <div className="text-xl font-bold mb-4">{top3[0].name}</div>
+        <div className="flex flex-col items-center scale-110">
+          <div className="text-2xl font-extrabold mb-4 text-yellow-600 flex items-center gap-2">
+            <span>🏆</span>
+            <span>{top3[0].name}</span>
+            <span>🏆</span>
+          </div>
           <div 
-            className="podium-first w-32 flex items-center justify-center rounded-t-md text-white"
+            className="podium-first w-36 flex items-center justify-center rounded-t-md text-white ring-4 ring-yellow-300"
             style={{ height: calculatePodiumHeight(top3[0].score, 1) }}
           >
-            <span className="font-bold text-3xl">{top3[0].score}</span>
+            <span className="font-extrabold text-4xl drop-shadow">{top3[0].score}</span>
           </div>
-          <div className="bg-yellow-500 w-40 h-14 flex items-center justify-center text-white font-bold rounded-b-md text-lg">
-            1st Place
+          <div className="bg-yellow-500 w-44 h-16 flex items-center justify-center text-white font-extrabold rounded-b-md text-xl shadow-md">
+            👑 1st Place
           </div>
         </div>
       )}

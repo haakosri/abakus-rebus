@@ -55,8 +55,8 @@ def generate_test_questions(filename='data/test_questions.csv', count=50):
         operation = random.choice(operations)
         question = stem.format(operation)
         
-        # Randomly assign to SupportAI or Sticos
-        classification = random.choice(["SupportAI", "Sticos"])
+        # Randomly assign to SupportAI, Sticos or innsiktsmodulen
+        classification = random.choice(["SupportAI", "Sticos", "innsiktsmodulen"])
         
         questions.append((question, classification))
     
