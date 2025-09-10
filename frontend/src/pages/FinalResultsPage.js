@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import LoadingSpinner from '../components/loadingSpinner';
 import LeaderboardTable from '../components/leaderboardTable';
 import Podium from '../components/Podium';
@@ -9,15 +9,25 @@ const FinalResultsPage = () => {
   const [top3, setTop3] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const pollRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
         const data = await getFinalLeaderboard();
-        setLeaderboard(data);
-        setTop3(data.slice(0, 3));
+        const arr = Array.isArray(data) ? data : [];
+        // Show only when there are actual final scores computed
+        const scored = arr.filter((e) => (e?.score || 0) > 0);
+        setLeaderboard(scored);
+        setTop3(scored.slice(0, 3));
         setError(null);
+        if (scored.length === 0 && !pollRef.current) {
+          pollRef.current = setInterval(fetchData, 5000);
+        }
+        if (scored.length > 0 && pollRef.current) {
+          clearInterval(pollRef.current);
+          pollRef.current = null;
+        }
       } catch (err) {
         setError(err.message);
       } finally {
@@ -25,6 +35,12 @@ const FinalResultsPage = () => {
       }
     };
     fetchData();
+    return () => {
+      if (pollRef.current) {
+        clearInterval(pollRef.current);
+        pollRef.current = null;
+      }
+    };
   }, []);
 
   if (loading) {
@@ -38,6 +54,8 @@ const FinalResultsPage = () => {
     );
   }
 
+  const isReady = leaderboard && leaderboard.length > 0;
+
   return (
     <div className="min-h-screen p-4">
       <div className="container mx-auto max-w-6xl">
@@ -47,10 +65,18 @@ const FinalResultsPage = () => {
             Error: {error}
           </div>
         )}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <Podium top3={top3} />
-        </div>
-        <LeaderboardTable leaderboard={leaderboard} />
+        {!isReady ? (
+          <div className="bg-white rounded-lg shadow-md p-10 text-center text-gray-600">
+            Final scores are being calculated. This page will update automatically.
+          </div>
+        ) : (
+          <>
+            <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+              <Podium top3={top3} />
+            </div>
+            <LeaderboardTable leaderboard={leaderboard} />
+          </>
+        )}
       </div>
     </div>
   );
